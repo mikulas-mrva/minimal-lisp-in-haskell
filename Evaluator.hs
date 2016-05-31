@@ -18,15 +18,6 @@ import Data.Char
 
 newtype Evaluator a = Ev (Either String a)
 
--- pouzivam to vubec?
-instance Monad Evaluator where
-    (Ev ev) >>= k =
-        case ev of
-          Left msg -> Ev (Left msg)
-          Right v -> k v
-    return v = Ev (Right v)
-    fail msg = Ev (Left msg)
-
 type SymTab = M.Map String [Tree]
 
 
